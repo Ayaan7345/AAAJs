@@ -5,10 +5,10 @@ import java.time.LocalDateTime;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class InputOutput {
-   public static void main(String args[]) throws java.io.IOException {
+public class TaskInputOutput {
+   public static void main(String args[]) throws IOException {
       //input
-      java.io.File file = new java.io.File("taskFiles.txt");
+      File file = new java.io.File("taskFiles.txt");
       Scanner fileReader = new Scanner(file);
       Scanner userInput = new Scanner(System.in);
       Pattern taskFormat = Pattern.compile("\\{(.*;){4}.*\\}");
@@ -44,5 +44,8 @@ public class InputOutput {
       try (PrintWriter fileOutput = new java.io.PrintWriter(file)) {
          fileOutput.print("{" + taskName + ";" + taskCategory + ";" + taskComplete + ";" + taskStart + ";" + taskDuration + "}");
       }
+
+      fileReader.close();
+      userInput.close();
    }
 }
