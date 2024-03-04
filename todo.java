@@ -38,6 +38,7 @@ arguments/parameters: ( ) data to be sent to the method -
     String tempNewCategory; //Temporary new name for category
     final double PROMODORO = (25.0*60); //Time in seconds to count for the promodoro effect 
     final double BREAKTIME = (5.0*60); //The ammount of time the user has to take a break from a task
+    //this is a test im doing something please dont remove.
   
 
     //Date rightNow = new Date(); //The date now
