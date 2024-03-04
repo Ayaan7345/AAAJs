@@ -1,6 +1,0 @@
-
- ----jGRASP exec: java HelloWorld
-Hello Word!: My name is A. Ahmad
-
- ----jGRASP: operation complete.
-
