@@ -33,7 +33,7 @@ arguments/parameters: ( ) data to be sent to the method -
     
 
     //declare data storage space (constants and variables)
-    int menuOption;
+    int menuOption; //Main menu choice to move around the program
     boolean timeConflict; //is there a conflict iour schedule
     boolean isTaskTimeInPast; //Is the task in the future
     String tempNewTaskName; //Temporary new name for task
@@ -59,6 +59,11 @@ arguments/parameters: ( ) data to be sent to the method -
     if (file.exists()){
       //-----------------------------read data from the file, store it in memory--------------------------------
       Scanner fileReader = new Scanner(file);
+      fileReader.next();
+      taskName = fileReader.next();
+      fileReader.next();
+      taskCategory = fileReader.next();
+
       System.out.print("Welcome to our To-Do Application, please select a choice from below to continue\n");
       System.out.print("Main menu: \n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n6.Start Promodoro\n0.Exit");
       System.out.print("\nEnter a choice from the menu and press Enter: ");
@@ -219,7 +224,7 @@ arguments/parameters: ( ) data to be sent to the method -
 
       if(menuOption == 5){
         java.io.PrintWriter output = new java.io.PrintWriter(file);
-        output.print("Task: "+taskName+" Task Category: "+taskCategory);
+        output.print("Task: "+taskName+" Category: "+taskCategory);
         output.close();
 
         System.out.println("------------Tasks Saved to File------------");
