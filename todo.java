@@ -4,9 +4,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Scanner;
+import javafx.scene.control.Menu;
 import java.io.PrintWriter;
 
-public class todo {
+public class todo extends uinputmenu {
 
   /*--------------------------------------------------------------------------------
 main method below: 
@@ -26,7 +27,9 @@ arguments/parameters: ( ) data to be sent to the method -
     //create any objects if needed (i.e. scanner for keyboard input)
     Scanner kbd = new Scanner(System.in);
     java.io.File file = new File("ToDoList.txt");
+    uinputmenu usher = new uinputmenu();
     
+  
     
 
     //declare data storage space (constants and variables)
@@ -41,9 +44,8 @@ arguments/parameters: ( ) data to be sent to the method -
   
 
     //Date rightNow = new Date(); //The date now
-    //Not implemented      Array taskList; //the main task list
+    //Not implemented      Aray taskList; //the main task list
     int deleteMenuChoice; //choice in the delete menu
-
     //Task properties
     String taskName=""; //name of the task
     String taskCategory=""; //What is the category of the task
@@ -51,6 +53,8 @@ arguments/parameters: ( ) data to be sent to the method -
     LocalDateTime taskStart; //Set when the task will start
     LocalDateTime taskDuration; //set the duration of the task
 
+    //Ayaan is doing something dont touch 
+    usher.menuUsher();
     //Start prompting to user
     if (file.exists()){
       //-----------------------------read data from the file, store it in memory--------------------------------
@@ -67,6 +71,7 @@ arguments/parameters: ( ) data to be sent to the method -
 
 
     while (menuOption < 0 || menuOption > 6) {
+      System.out.print(menuOption);
       System.out.println("---------------Invalid Choice---------------");
       System.out.print(
         "Main menu: \n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n6.Promodoro\n0.Exit"
@@ -226,6 +231,7 @@ arguments/parameters: ( ) data to be sent to the method -
 
 
       if(menuOption == 6){
+        usher.menuUsher();
         System.out.println("------------Promodoro-------------");
         System.out.print("Main menu: \n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n0.Exit");
         System.out.print("\nEnter a choice from the menu and press Enter: ");
