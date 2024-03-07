@@ -148,20 +148,24 @@ arguments/parameters: ( ) data to be sent to the method -
             }//case 1
             case 2: {
               //Prompt the task list
-            System.out.println("------Task: "+taskName+" Category: "+taskCategory+"------");
-            //------------NEED MENU TO HAVE THEM PICK THE TASK------------
-            kbd.nextLine();
-            System.out.print("Enter the new task category: ");
-            tempNewCategory = kbd.nextLine();
+              System.out.println("------Task: "+taskName+" Category: "+taskCategory+"------");
+              //------------NEED MENU TO HAVE THEM PICK THE TASK------------
+              kbd.nextLine();
+              System.out.print("Enter the new task category: ");
+              tempNewCategory = kbd.nextLine();
 
-            taskCategory = tempNewCategory;
+              taskCategory = tempNewCategory;
 
-            System.out.print("\nWhat would you like to edit?\n1. Edit Task Name\n2. Edit Task Category\n0. Return to Main menu\nEnter a choice from the menu: ");
-            editMenuChoice = kbd.nextInt(); 
-            break;
-
-            }//case 2 curly brace
-            
+              System.out.print("\nWhat would you like to edit?\n1. Edit Task Name\n2. Edit Task Category\n0. Return to Main menu\nEnter a choice from the menu: ");
+              editMenuChoice = kbd.nextInt(); 
+              break;
+            }//case 2 curly brace 
+            default:{
+              System.out.println("-----Invalid Option-----");
+              System.out.print("\nWhat would you like to edit?\n1. Edit Task Name\n2. Edit Task Category\n0. Return to Main menu\nEnter a choice from the menu: ");
+              editMenuChoice = kbd.nextInt(); 
+              break;
+            }
           }//switch case close
 
         }//editMenuChoice WHILE close
