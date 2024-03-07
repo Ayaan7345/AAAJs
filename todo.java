@@ -242,10 +242,14 @@ arguments/parameters: ( ) data to be sent to the method -
         System.out.print("\nEnter a choice from the menu and press Enter: ");
         menuOption = kbd.nextInt();
       }
-      if (menuOption == 0) {
-        System.out.println("Good Bye!");
-      } //close choice 0
+      else{//invalid option
+        System.out.println("---------------Invalid Choice---------------");
+        System.out.print("Main menu: \n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n0.Exit");
+        System.out.print("\nEnter a choice from the menu and press Enter: ");
+        menuOption = kbd.nextInt();
+      }//close else - invalid option
 
     } //close main menuOption==0 while Loop
+    System.out.println("GoodBye");
   } //closing main method
 } //closing class header
