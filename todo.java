@@ -130,9 +130,10 @@ arguments/parameters: ( ) data to be sent to the method -
         //Prompt Edit Menu 
         System.out.print("\nWhat would you like to edit?\n1. Edit Task Name\n2. Edit Task Category\n0. Return to Main menu\nEnter a choice from the menu: ");
         editMenuChoice = kbd.nextInt();
-        while(editMenuChoice!=0){
+        while(editMenuChoice !=0 && <=0 ){
           switch(editMenuChoice){
             case 1: {
+
               //Prompt the task list
               System.out.println("------Task: "+taskName+" Category: "+taskCategory+"------");
               //------------NEED MENU TO HAVE THEM PICK THE TASK------------
@@ -145,6 +146,7 @@ arguments/parameters: ( ) data to be sent to the method -
               System.out.print("\nWhat would you like to edit?\n1. Edit Task Name\n2. Edit Task Category\n0. Return to Main menu\nEnter a choice from the menu: ");
 
               editMenuChoice = kbd.nextInt();
+
               break;
             }//case 1
             case 2: {
