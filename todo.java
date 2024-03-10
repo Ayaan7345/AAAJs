@@ -130,7 +130,7 @@ arguments/parameters: ( ) data to be sent to the method -
         //Prompt Edit Menu 
         System.out.print("\nWhat would you like to edit?\n1. Edit Task Name\n2. Edit Task Category\n0. Return to Main menu\nEnter a choice from the menu: ");
         editMenuChoice = kbd.nextInt();
-        while(editMenuChoice !=0 && <=0 ){
+        while(editMenuChoice !=0 && editMenuChoice <= 0 ){
           switch(editMenuChoice){
             case 1: {
 
