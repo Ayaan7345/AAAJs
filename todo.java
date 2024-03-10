@@ -76,7 +76,7 @@ arguments/parameters: ( ) data to be sent to the method -
     }//close else
 
 
-    while (menuOption < 0 || menuOption > 6) {
+    while (menuOption !=0 && menuOption <= 0) {
       System.out.print(menuOption);
       System.out.println("---------------Invalid Choice---------------");
       System.out.print(
