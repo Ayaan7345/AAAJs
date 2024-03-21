@@ -74,7 +74,7 @@ arguments/parameters: ( ) data to be sent to the method -
       System.out.println("Welcome to the app, you will need to create a task for the application to function properly: Please follow the instructions");
       menuOption=1;
     }//close else
-
+  
 
     while (menuOption !=0 && menuOption <= 0) {
       System.out.print(menuOption);
