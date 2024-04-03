@@ -43,10 +43,11 @@ arguments/parameters: ( ) data to be sent to the method -
     final double PROMODORO = (25.0*60); //Time in seconds to count for the promodoro effect 
     final double BREAKTIME = (5.0*60); //The ammount of time the user has to take a break from a task
     int taskToEdit;
-  
+
+
 
     //Date rightNow = new Date(); //The date now
-    String[] taskList; //the main task list
+    String[][] taskList; //the main task list
     int deleteMenuChoice; //choice in the delete menu
     //Task properties
     String taskName=""; //name of the task
@@ -98,7 +99,7 @@ arguments/parameters: ( ) data to be sent to the method -
                 "/ /\\ \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\/\\ \\\n" + //
                 "\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `' /\n" + //
                 " `--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--' ");
-      System.out.println("Welcome to the app, you will need to create a task for the application to function properly: Please follow the instructions");
+      System.out.println("\nWelcome to the app, you will need to create a task for the application to function properly: Please follow the instructions");
       menuOption=1;
     }//close else
   
@@ -185,7 +186,30 @@ arguments/parameters: ( ) data to be sent to the method -
 
               break;
             }//case 1
-            case 2: {
+
+/*             case 2: {
+              // Prompt the task list
+              for(i = 0; i < taskArray.length; i++){
+                  System.out.println((i + 1) + ". Task: " + taskArray[i][0] + " Category: " + taskArray[i][1]);
+              }
+            
+              System.out.print("Enter which task you would like to edit: ");
+              taskToEdit = kbd.nextInt() - 1; // Subtract 1 to match the array index starting from 0
+            
+              kbd.nextLine(); // To avoid issues when reading the next line
+            
+              System.out.print("Enter the new task category: ");
+              tempNewCategory = kbd.nextLine();
+            
+              taskArray[taskToEdit][1] = tempNewCategory; // Replace the category of the selected task
+            
+              System.out.print("\nWhat would you like to edit?\n1. Edit Task Name\n2. Edit Task Category\n0. Return to Main menu\nEnter a choice from the menu: ");
+              editMenuChoice = kbd.nextInt();
+              break;
+          } // End of 'case 2'
+          
+    */       
+          case 2: {
               //Prompt the task list
               for(i=0;i<2;i++){
                System.out.println((++i)+". Task: "+taskName+" Category: "+taskCategory);
@@ -221,47 +245,11 @@ arguments/parameters: ( ) data to be sent to the method -
            }//switch case close
           }
           while(editMenuChoice !=0);//editMenuChoice WHILE close
-
-        /*
-        // Return to main menu if you dont want to edit a task
-        while(editMenuChoice!=0){
-          System.out.print("\nWhat would you like to edit?\n1. Edit Task Name\n2. Edit Task Category\n0. Return to Main menu");
-          editMenuChoice = kbd.nextInt();
-
-          if(editMenuChoice==1){
-            //Prompt the task list
-            System.out.print("Task: "+taskName+" Category: "+taskCategory);
-            //------------NEED MENU TO HAVE THEM PICK THE TASK------------
-
-            System.out.print("Enter the new task name: ");
-            tempNewTaskName = kbd.nextLine();
-
-            taskName = tempNewTaskName;
-
-            System.out.print("\nWhat would you like to edit?\n1. Edit Task Name\n2. Edit Task Category\n0. Return to Main menu");
-            editMenuChoice = kbd.nextInt();
-          }//close editMenuChoice 1
-          if(editMenuChoice == 2 ){
-            
-            //Prompt the task list
-            System.out.print("Task: "+taskName+" Category: "+taskCategory);
-            //------------NEED MENU TO HAVE THEM PICK THE TASK------------
-
-            System.out.print("Enter the new task category: ");
-            tempNewCategory = kbd.nextLine();
-
-            System.out.print("\nWhat would you like to edit?\n1. Edit Task Name\n2. Edit Task Category\n0. Return to Main menu");
-            editMenuChoice = kbd.nextInt();  
-          }//close editMenuChoice 2
-
-        }//editMenuChoice WHILE close
-        */
-
         //Prompt user for menuOption again since we are out of the editMenu
         System.out.print("Main menu: \n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n6.Start Promodoro\n7.Print Tasks\n0.Exit");
         System.out.print("\nEnter a choice from the menu and press Enter: ");
         menuOption = kbd.nextInt();
-      }//close menuOption2
+      }//close menuOption2 */
 
       else if (menuOption == 3){
         System.out.println("----------Delete Task------------");
@@ -278,7 +266,7 @@ arguments/parameters: ( ) data to be sent to the method -
         menuOption = kbd.nextInt();
       }
 
-      else if(menuOption == 5){
+/*       else if(menuOption == 5){
         java.io.PrintWriter output = new java.io.PrintWriter(file);
         output.print("Task: "+taskName+" Category: "+taskCategory);
         output.print("Task: "+task2Name+" Category: "+task2Category);
@@ -289,7 +277,30 @@ arguments/parameters: ( ) data to be sent to the method -
         System.out.print("\nEnter a choice from the menu and press Enter: ");
         menuOption = kbd.nextInt();
 
-      }
+      } */
+      else if(menuOption == 5){
+        // Suppose you have a 2D array of tasks and their categories called 'taskArray'
+        String[][] taskArray = {
+            {"Task1", "Category1"},
+            {"Task2", "Category2"},
+            {"Task3", "Category3"}
+        };
+        
+        java.io.PrintWriter output = new java.io.PrintWriter(file);
+        
+        // Write each task and its category in the array to the file
+        for(String[] task : taskArray) {
+            output.println("Task: "+ task[0] +" Category: "+ task[1]);
+        }
+        output.close();
+        
+        System.out.println("------------Tasks Saved to File------------");
+        System.out.print("Main menu: \n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n6.Start Promodoro\n7.Print Tasks\n0.Exit");
+        System.out.print("\nEnter a choice from the menu and press Enter: ");
+        menuOption = kbd.nextInt();
+        }
+        
+    
 
       else if(menuOption == 6){
         usher.menuUsher();
