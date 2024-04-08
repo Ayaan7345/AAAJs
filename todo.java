@@ -122,7 +122,12 @@ public class todo extends uinputmenu {
     }
     while (menuOption != 0) {
       if (menuOption == 1) {
+<<<<<<< HEAD
          kbd.nextLine();
+=======
+        // System.out.println("ADD TASK HAS NOT BEEN FULLY IMPLEMENTED, WILL REWORK ONCE
+        // WE UNDERSTAND ARRAYS, WILL ONLY REPLACE ORIGINAL TASK");
+>>>>>>> f62f384 (Fixed small error bug within menu option 1)
         /*
          * while(timeConflict == false){
          * 
