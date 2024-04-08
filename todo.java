@@ -61,11 +61,21 @@ public class todo extends uinputmenu {
       // -----------------------------read data from the file, store it in
       // memory--------------------------------
       Scanner fileReader = new Scanner(file);
-      fileReader.next();
-      taskName = fileReader.next();
-      fileReader.next();
-      taskCategory = fileReader.next();
-
+      do{
+         numberOfTasks++;//There should be 1 task by default since the file already exists
+         fileReader.next();// Skip the number
+         fileReader.next();//Skip the *Task:* label
+         taskName = fileReader.next();//Store the task name
+         fileReader.next();// Skip the *Category:* Label
+         taskCategory = fileReader.next();//Store the task Category
+         // SPACES BETWEEN NAMES WILL COMPLETELY BREAK THE PROGRAM - NEED A DELIMITER
+         
+                 
+          taskList[0][i] = taskName;//Add Task Name to index i
+          taskList[1][i] = taskCategory; //Add Category to index i
+          i++;
+      }while (fileReader.hasNext()); //while the file still has lines
+      
       System.out.print("Welcome to our To-Do Application, please select a choice from below to continue\n");
       System.out.print(
           "Main menu: \n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n6.Start Promodoro\n7.Print Tasks\n0.Exit");
@@ -112,12 +122,7 @@ public class todo extends uinputmenu {
     }
     while (menuOption != 0) {
       if (menuOption == 1) {
-        // System.out.println("ADD TASK HAS NOT BEEN FULLY IMPLEMENTED, WILL REWORK ONCE
-        // WE UNDERSTAND ARRAYS, WILL ONLY REPLACE ORIGINAL TASK");
-        System.out.print("Enter a new task: ");
-        // kbd.nextLine();
-        taskName = kbd.nextLine();
-
+         kbd.nextLine();
         /*
          * while(timeConflict == false){
          * 
@@ -148,8 +153,7 @@ public class todo extends uinputmenu {
         System.out.print("Enter task category: ");
         taskCategory = kbd.nextLine();
 
-        System.out
-            .println("------------\nAdded Task: " + taskName + "\nTask category: " + taskCategory + "\n------------");
+        System.out.println("------------\nAdded Task: " + taskName + "\nTask category: " + taskCategory + "\n------------");
         taskComplete = false; // Will need the index for where in each task to store this
 
         // append Task to list;
@@ -286,7 +290,7 @@ public class todo extends uinputmenu {
         java.io.PrintWriter output = new java.io.PrintWriter(file);
         // Suppose you have a 2D array of tasks and their categories called 'taskArray'
         for (int j = 0; j < numberOfTasks; j++) {
-          output.println((j + 1) + ". Task: " + taskList[0][j] + "; Category: " + taskList[1][j]);
+          output.println((j + 1) + ". Task: " + taskList[0][j] + " Category: " + taskList[1][j]);
         }
        
 
@@ -310,10 +314,13 @@ public class todo extends uinputmenu {
             "Main menu: \n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n6.Start Promodoro\n7.Print Tasks\n0.Exit");
         System.out.print("\nEnter a choice from the menu and press Enter: ");
         menuOption = kbd.nextInt();
-      } else if (menuOption == 7) {
+      } 
+      
+      else if (menuOption == 7) {
         System.out.println("-------------------------------------");
+        System.out.println("Number of tasks: "+numberOfTasks);
         for (int j = 0; j < numberOfTasks; j++) {
-          System.out.println((j + 1) + ". Task: " + taskList[0][j] + "; Category: " + taskList[1][j]);
+          System.out.println((j+1) + ". Task: " + taskList[0][j] + " Category: " + taskList[1][j]);
         }
 
         System.out.print(
