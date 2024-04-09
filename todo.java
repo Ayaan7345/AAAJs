@@ -79,8 +79,8 @@ public class todo extends uinputmenu {
       System.out.print("Welcome to our To-Do Application, please select a choice from below to continue\n");
       
       menuOption = promptMenuOption();
-    } // close file exists
-    else {
+       // close file exists
+    } else {
       System.out.println(" .--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--. \n" + //
           "/ .. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\\n" + //
           "\\ \\/\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ \\/ /\n" + //
@@ -113,19 +113,11 @@ public class todo extends uinputmenu {
     while (menuOption != 0 && menuOption <= 0) {
       System.out.print(menuOption);
       System.out.println("---------------Invalid Choice---------------");
-      System.out.print(
-          "Main menu: \n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n6.Start Promodoro\n7.Print Tasks\n0.Exit");
-      System.out.print("\nEnter a choice from the menu and press Enter: ");
-      menuOption = kbd.nextInt();
+      
+      menuOption = promptMenuOption();
     }
     while (menuOption != 0) {
       if (menuOption == 1) {
-<<<<<<< HEAD
-         kbd.nextLine();
-=======
-        // System.out.println("ADD TASK HAS NOT BEEN FULLY IMPLEMENTED, WILL REWORK ONCE
-        // WE UNDERSTAND ARRAYS, WILL ONLY REPLACE ORIGINAL TASK");
->>>>>>> f62f384 (Fixed small error bug within menu option 1)
         /*
          * while(timeConflict == false){
          * 
@@ -185,11 +177,8 @@ public class todo extends uinputmenu {
           editMenuChoice = kbd.nextInt();
           switch (editMenuChoice) {
             case 1: {
-
               // Prompt the task list
-              for (int j = 0; j < numberOfTasks; j++) {
-                System.out.println((j + 1) + ". Task: " + taskList[0][j] + "; Category: " + taskList[1][j]);
-              }
+              displayTasks(taskList, numberOfTasks);
 
               // ------------NEED MENU TO HAVE THEM PICK THE TASK------------
               System.out.print("Enter which task you would like to edit: ");
@@ -215,9 +204,7 @@ public class todo extends uinputmenu {
 
             case 2: {
               // Prompt the task list
-              for (int j = 0; j < numberOfTasks; j++) {
-                System.out.println((j + 1) + ". Task: " + taskList[0][j] + "; Category: " + taskList[1][j]);
-              }
+              displayTasks(taskList, numberOfTasks);
 
               System.out.print("Enter which task you would like to edit: ");
               taskToEdit = kbd.nextInt();
@@ -253,9 +240,7 @@ public class todo extends uinputmenu {
       else if (menuOption == 3) {
         System.out.println("----------Delete Task------------");
 
-        for (int j = 0; j < numberOfTasks; j++) {
-          System.out.println((j + 1) + ". Task: " + taskList[0][j] + "; Category: " + taskList[1][j]);
-        }
+        displayTasks(taskList, numberOfTasks);
 
         System.out.print("Enter which task you would like to delete: ");
         taskToEdit = kbd.nextInt();
@@ -307,11 +292,9 @@ public class todo extends uinputmenu {
       
       else if (menuOption == 7) {
         System.out.println("-------------------------------------");
-        System.out.println("Number of tasks: "+numberOfTasks);
-        for (int j = 0; j < numberOfTasks; j++) {
-          System.out.println((j+1) + ". Task: " + taskList[0][j] + " Category: " + taskList[1][j]);
-        }
-
+        System.out.println("Number of tasks: " + numberOfTasks);
+        displayTasks(taskList, numberOfTasks);
+        
         menuOption = promptMenuOption();
       } else {
         // invalid option
@@ -328,5 +311,11 @@ public class todo extends uinputmenu {
       "Main menu: \n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n6.Start Promodoro\n7.Print Tasks\n0.Exit");
     System.out.print("\nEnter a choice from the menu and press Enter: ");
     return kbd.nextInt();
+  }
+
+  public static void displayTasks(String[][] taskList, int numberOfTasks) {
+    for (int i = 0; i < numberOfTasks; i++) {
+      System.out.println((i+1) + ". Task: " + taskList[0][i] + "; Category: " + taskList[1][i]);
+    }
   }
 } // closing class header
