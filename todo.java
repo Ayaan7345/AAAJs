@@ -61,7 +61,7 @@ public class todo extends uinputmenu {
       // -----------------------------read data from the file, store it in
       // memory--------------------------------
       Scanner fileReader = new Scanner(file);
-      do{
+      do {
          numberOfTasks++;//There should be 1 task by default since the file already exists
          fileReader.next();// Skip the number
          fileReader.next();//Skip the *Task:* label
@@ -71,16 +71,14 @@ public class todo extends uinputmenu {
          // SPACES BETWEEN NAMES WILL COMPLETELY BREAK THE PROGRAM - NEED A DELIMITER
          
                  
-          taskList[0][i] = taskName;//Add Task Name to index i
-          taskList[1][i] = taskCategory; //Add Category to index i
-          i++;
-      }while (fileReader.hasNext()); //while the file still has lines
+        taskList[0][i] = taskName;//Add Task Name to index i
+        taskList[1][i] = taskCategory; //Add Category to index i
+        i++;
+      } while (fileReader.hasNext()); //while the file still has lines
       
       System.out.print("Welcome to our To-Do Application, please select a choice from below to continue\n");
-      System.out.print(
-          "Main menu: \n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n6.Start Promodoro\n7.Print Tasks\n0.Exit");
-      System.out.print("\nEnter a choice from the menu and press Enter: ");
-      menuOption = kbd.nextInt();
+      
+      menuOption = promptMenuOption();
     } // close file exists
     else {
       System.out.println(" .--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--. \n" + //
@@ -174,10 +172,7 @@ public class todo extends uinputmenu {
         taskList[1][numberOfTasks] = taskCategory;
         numberOfTasks++;
 
-        System.out.print(
-            "Main menu: \n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n6.Start Promodoro\n7.Print Tasks\n0.Exit");
-        System.out.print("\nEnter a choice from the menu and press Enter: ");
-        menuOption = kbd.nextInt();
+        menuOption = promptMenuOption();
       } // close choice 1
 
       else if (menuOption == 2) {
@@ -250,11 +245,9 @@ public class todo extends uinputmenu {
             }
           }// switch case close
         } while (editMenuChoice != 0);// editMenuChoice WHILE close
+
         // Prompt user for menuOption again since we are out of the editMenu
-        System.out.print(
-            "Main menu: \n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n6.Start Promodoro\n7.Print Tasks\n0.Exit");
-        System.out.print("\nEnter a choice from the menu and press Enter: ");
-        menuOption = kbd.nextInt();
+        menuOption = promptMenuOption();
       } // close menuOption2 */
 
       else if (menuOption == 3) {
@@ -277,18 +270,13 @@ public class todo extends uinputmenu {
           System.out.print("\nNot a valid task option");
         }
 
-        System.out.print(
-            "Main menu: \n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n6.Start Promodoro\n7.Print Tasks\n0.Exit");
-        System.out.print("\nEnter a choice from the menu and press Enter: ");
-        menuOption = kbd.nextInt();
+        menuOption = promptMenuOption();
       }
 
       else if (menuOption == 4) {
         System.out.println("----------Complete a Task----------");
-        System.out.print(
-            "Main menu: \n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n6.Start Promodoro\n7.Print Tasks\n0.Exit");
-        System.out.print("\nEnter a choice from the menu and press Enter: ");
-        menuOption = kbd.nextInt();
+        
+        menuOption = promptMenuOption();
       }
    
       else if (menuOption == 5) {
@@ -306,19 +294,15 @@ public class todo extends uinputmenu {
         output.close();
 
         System.out.println("------------Tasks Saved to File------------");
-        System.out.print(
-            "Main menu: \n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n6.Start Promodoro\n7.Print Tasks\n0.Exit");
-        System.out.print("\nEnter a choice from the menu and press Enter: ");
-        menuOption = kbd.nextInt();
+
+        menuOption = promptMenuOption();
       }
 
       else if (menuOption == 6) {
         usher.menuUsher();
         System.out.println("------------Promodoro-------------");
-        System.out.print(
-            "Main menu: \n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n6.Start Promodoro\n7.Print Tasks\n0.Exit");
-        System.out.print("\nEnter a choice from the menu and press Enter: ");
-        menuOption = kbd.nextInt();
+        
+        menuOption = promptMenuOption();
       } 
       
       else if (menuOption == 7) {
@@ -328,18 +312,21 @@ public class todo extends uinputmenu {
           System.out.println((j+1) + ". Task: " + taskList[0][j] + " Category: " + taskList[1][j]);
         }
 
-        System.out.print(
-            "Main menu: \n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n6.Start Promodoro\n7.Print Tasks\n0.Exit");
-        System.out.print("\nEnter a choice from the menu and press Enter: ");
-        menuOption = kbd.nextInt();
-      } else {// invalid option
+        menuOption = promptMenuOption();
+      } else {
+        // invalid option
         System.out.println("---------------Invalid Choice---------------");
-        System.out.print(
-            "Main menu: \n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n6.Start Promodoro\n7.Print Tasks\n0.Exit");
-        System.out.print("\nEnter a choice from the menu and press Enter: ");
-        menuOption = kbd.nextInt();
+        menuOption = promptMenuOption();
       } // close else - invalid option
 
     } // close main menuOption==0 while Loop
   } // closing main method
+
+  public static int promptMenuOption() {
+    Scanner kbd = new Scanner(System.in);
+    System.out.print(
+      "Main menu: \n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n6.Start Promodoro\n7.Print Tasks\n0.Exit");
+    System.out.print("\nEnter a choice from the menu and press Enter: ");
+    return kbd.nextInt();
+  }
 } // closing class header
