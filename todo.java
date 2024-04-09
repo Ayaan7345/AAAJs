@@ -142,26 +142,8 @@ public class todo extends uinputmenu {
          * //
          * }//close while timeConflict
          */
-        System.out.print("Enter task name: ");
-        taskName = kbd.nextLine();
 
-        System.out.print("Enter task category: ");
-        taskCategory = kbd.nextLine();
-
-        System.out.println("------------\nAdded Task: " + taskName + "\nTask category: " + taskCategory + "\n------------");
-        taskComplete = false; // Will need the index for where in each task to store this
-
-        // append Task to list;
-        if (numberOfTasks > taskList.length) {
-          String[][] tempArray = new String[2][taskList.length + 10];
-          for (int j = 0; j < numberOfTasks; j++) {
-            tempArray[0][j] = taskList[0][j];
-            tempArray[1][j] = taskList[1][j];
-          }
-          taskList = tempArray;
-        }
-        taskList[0][numberOfTasks] = taskName;
-        taskList[1][numberOfTasks] = taskCategory;
+        taskList = addTask(addTask, numberOfTasks);
         numberOfTasks++;
 
         menuOption = promptMenuOption();
@@ -317,5 +299,31 @@ public class todo extends uinputmenu {
     for (int i = 0; i < numberOfTasks; i++) {
       System.out.println((i+1) + ". Task: " + taskList[0][i] + "; Category: " + taskList[1][i]);
     }
+  }
+
+  public static String[][] addTask(String[][] taskList, int numberOfTasks) {
+    System.out.print("Enter task name: ");
+    taskName = kbd.nextLine();
+
+    System.out.print("Enter task category: ");
+    taskCategory = kbd.nextLine();
+
+    System.out.println("------------\nAdded Task: " + taskName + "\nTask category: " + taskCategory + "\n------------");
+
+    //Expand array if it's too small
+    if (numberOfTasks > taskList.length) {
+      String[][] tempArray = new String[2][taskList.length + 10];
+      for (int i = 0; i < numberOfTasks; i++) {
+        tempArray[0][i] = taskList[0][i];
+        tempArray[1][i] = taskList[1][i];
+      }
+      taskList = tempArray;
+    }
+
+    // append Task to list
+    taskList[0][numberOfTasks] = taskName;
+    taskList[1][numberOfTasks] = taskCategory;
+
+    return taskList;
   }
 } // closing class header
