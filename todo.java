@@ -94,6 +94,8 @@ public class todo {
     }
     while (menuOption != 0) {
       if (menuOption == 1) {
+        // System.out.println("ADD TASK HAS NOT BEEN FULLY IMPLEMENTED, WILL REWORK ONCE
+        // WE UNDERSTAND ARRAYS, WILL ONLY REPLACE ORIGINAL TASK");
         /*
          * while(timeConflict == false){
          * 
