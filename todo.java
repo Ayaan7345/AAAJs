@@ -142,6 +142,7 @@ public class todo extends uinputmenu {
          * //
          * }//close while timeConflict
          */
+        System.out.println("----------Add Task------------");
 
         taskList = addTask(taskList, numberOfTasks);
         numberOfTasks++;
@@ -150,6 +151,7 @@ public class todo extends uinputmenu {
       } // close choice 1
 
       else if (menuOption == 2) {
+        System.out.println("----------Edit Task------------");
 
         // IF 2 IS SELECTED, PRINT THE TASKS
         // Prompt Edit Menu
@@ -162,19 +164,8 @@ public class todo extends uinputmenu {
       else if (menuOption == 3) {
         System.out.println("----------Delete Task------------");
 
-        displayTasks(taskList, numberOfTasks);
-
-        System.out.print("Enter which task you would like to delete: ");
-        taskToEdit = kbd.nextInt();
-
-        if (0 < taskToEdit && taskToEdit <= numberOfTasks) {
-          for (int j = taskToEdit; j < numberOfTasks; j++) {
-            taskList[0][j - 1] = taskList[0][j];
-            taskList[1][j - 1] = taskList[1][j];
-          }
+        if (deleteTask(taskList, numberOfTasks)) {
           numberOfTasks--;
-        } else {
-          System.out.print("\nNot a valid task option");
         }
 
         menuOption = promptMenuOption();
@@ -243,7 +234,7 @@ public class todo extends uinputmenu {
 
   public static String[][] addTask(String[][] taskList, int numberOfTasks) {
     Scanner kbd = new Scanner(System.in);
-    
+
     System.out.print("Enter task name: ");
     taskName = kbd.nextLine();
 
@@ -333,6 +324,27 @@ public class todo extends uinputmenu {
           break;
       }
     } while (editMenuChoice != 0);// editMenuChoice WHILE close
+  }
 
+  public static boolean deleteTask(String[][] taskList, int numberOfTasks) {
+    Scanner kbd = new Scanner(System.in);
+    boolean taskDeleted = false;
+
+    displayTasks(taskList, numberOfTasks);
+
+    System.out.print("Enter which task you would like to delete: ");
+    taskToEdit = kbd.nextInt();
+
+    if (0 < taskToEdit && taskToEdit <= numberOfTasks) {
+      for (int i = taskToEdit; i < numberOfTasks; i++) {
+        taskList[0][i - 1] = taskList[0][i];
+        taskList[1][i - 1] = taskList[1][i];
+      }
+      taskDeleted = true;
+    } else {
+      System.out.print("\nNot a valid task option");
+    }
+
+    return taskDeleted;
   }
 } // closing class header
