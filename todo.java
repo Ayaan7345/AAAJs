@@ -28,6 +28,8 @@ public class todo {
     // create any objects if needed (i.e. scanner for keyboard input)
     Scanner kbd = new Scanner(System.in);
     java.io.File file = new File("ToDoList.txt");
+    /* Creating an object for OOP user.uinputmenu(prints out uinputmenu.java) */
+    uinputmenu usher = new uinputmenu();
 
     // declare data storage space (constants and variables)
     int menuOption; // Main menu choice to move around the program
