@@ -281,6 +281,8 @@ public class todo extends uinputmenu {
   */
   public static String[][] addTask(String[][] taskList, int numberOfTasks) {
     Scanner kbd = new Scanner(System.in);
+    String taskName = "";
+    String taskCategory = "";
 
     System.out.print("Enter task name: ");
     taskName = kbd.nextLine();
