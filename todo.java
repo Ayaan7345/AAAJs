@@ -143,7 +143,7 @@ public class todo extends uinputmenu {
          * }//close while timeConflict
          */
 
-        taskList = addTask(addTask, numberOfTasks);
+        taskList = addTask(taskList, numberOfTasks);
         numberOfTasks++;
 
         menuOption = promptMenuOption();
@@ -153,67 +153,7 @@ public class todo extends uinputmenu {
 
         // IF 2 IS SELECTED, PRINT THE TASKS
         // Prompt Edit Menu
-        do {
-          System.out.print(
-              "\nWhat would you like to edit?\n1. Edit Task Name\n2. Edit Task Category\n0. Return to Main menu\nEnter a choice from the menu: ");
-          editMenuChoice = kbd.nextInt();
-          switch (editMenuChoice) {
-            case 1: {
-              // Prompt the task list
-              displayTasks(taskList, numberOfTasks);
-
-              // ------------NEED MENU TO HAVE THEM PICK THE TASK------------
-              System.out.print("Enter which task you would like to edit: ");
-              taskToEdit = kbd.nextInt();
-
-              kbd.nextLine();// This borks the program when you try to edit two things back to back
-
-              if (0 < taskToEdit && taskToEdit <= numberOfTasks) {
-                System.out.print("Enter the new task name: ");
-                taskList[0][taskToEdit - 1] = kbd.nextLine();
-              } // end of if
-              else {
-                System.out.print("\nNot a valid task option");
-              } // end of else
-
-              System.out.print(
-                  "\nWhat would you like to edit?\n1. Edit Task Name\n2. Edit Task Category\n0. Return to Main menu\nEnter a choice from the menu: ");
-
-              editMenuChoice = kbd.nextInt();
-
-              break;
-            } // case 1
-
-            case 2: {
-              // Prompt the task list
-              displayTasks(taskList, numberOfTasks);
-
-              System.out.print("Enter which task you would like to edit: ");
-              taskToEdit = kbd.nextInt();
-
-              kbd.nextLine();// This borks the program when you try to edit two things back to back
-
-              if (0 < taskToEdit && taskToEdit <= numberOfTasks) {
-                System.out.print("Enter the new task name: ");
-                taskList[1][taskToEdit - 1] = kbd.nextLine();
-              } else {
-                System.out.print("\nNot a valid task option");
-              }
-
-              System.out.print(
-                  "\nWhat would you like to edit?\n1. Edit Task Name\n2. Edit Task Category\n0. Return to Main menu\nEnter a choice from the menu: ");
-              editMenuChoice = kbd.nextInt();
-              break;
-            } // case 2 curly brace
-            default: {
-              System.out.println("-----Invalid Option-----");
-              System.out.print(
-                  "\nWhat would you like to edit?\n1. Edit Task Name\n2. Edit Task Category\n0. Return to Main menu\nEnter a choice from the menu: ");
-              editMenuChoice = kbd.nextInt();
-              break;
-            }
-          }// switch case close
-        } while (editMenuChoice != 0);// editMenuChoice WHILE close
+        editTask(taskList, numberOfTasks);
 
         // Prompt user for menuOption again since we are out of the editMenu
         menuOption = promptMenuOption();
@@ -302,6 +242,8 @@ public class todo extends uinputmenu {
   }
 
   public static String[][] addTask(String[][] taskList, int numberOfTasks) {
+    Scanner kbd = new Scanner(System.in);
+    
     System.out.print("Enter task name: ");
     taskName = kbd.nextLine();
 
@@ -325,5 +267,72 @@ public class todo extends uinputmenu {
     taskList[1][numberOfTasks] = taskCategory;
 
     return taskList;
+  }
+
+  public static void editTask(String[][] taskList, int numberOfTasks) {
+    int editMenuChoice = 0;
+    Scanner kbd = new Scanner(System.in);
+
+    do {
+      // Prompt Edit Menu
+      System.out.print(
+          "\nWhat would you like to edit?\n1. Edit Task Name\n2. Edit Task Category\n0. Return to Main menu\nEnter a choice from the menu: ");
+      editMenuChoice = kbd.nextInt();
+
+      switch (editMenuChoice) {
+        case 1:
+          // Prompt the task list
+          displayTasks(taskList, numberOfTasks);
+
+          // ------------NEED MENU TO HAVE THEM PICK THE TASK------------
+          System.out.print("Enter which task you would like to edit: ");
+          taskToEdit = kbd.nextInt();
+
+          kbd.nextLine();// This borks the program when you try to edit two things back to back
+
+          if (0 < taskToEdit && taskToEdit <= numberOfTasks) {
+            System.out.print("Enter the new task name: ");
+            taskList[0][taskToEdit - 1] = kbd.nextLine();
+          } // end of if
+          else {
+            System.out.print("\nNot a valid task option");
+          } // end of else
+
+          System.out.print(
+              "\nWhat would you like to edit?\n1. Edit Task Name\n2. Edit Task Category\n0. Return to Main menu\nEnter a choice from the menu: ");
+
+          editMenuChoice = kbd.nextInt();
+        break;
+
+        case 2:
+          // Prompt the task list
+          displayTasks(taskList, numberOfTasks);
+
+          System.out.print("Enter which task you would like to edit: ");
+          taskToEdit = kbd.nextInt();
+
+          kbd.nextLine();// This borks the program when you try to edit two things back to back
+
+          if (0 < taskToEdit && taskToEdit <= numberOfTasks) {
+            System.out.print("Enter the new task name: ");
+            taskList[1][taskToEdit - 1] = kbd.nextLine();
+          } else {
+            System.out.print("\nNot a valid task option");
+          }
+
+          System.out.print(
+              "\nWhat would you like to edit?\n1. Edit Task Name\n2. Edit Task Category\n0. Return to Main menu\nEnter a choice from the menu: ");
+          editMenuChoice = kbd.nextInt();
+          break;
+        
+        default:
+          System.out.println("-----Invalid Option-----");
+          System.out.print(
+              "\nWhat would you like to edit?\n1. Edit Task Name\n2. Edit Task Category\n0. Return to Main menu\nEnter a choice from the menu: ");
+          editMenuChoice = kbd.nextInt();
+          break;
+      }
+    } while (editMenuChoice != 0);// editMenuChoice WHILE close
+
   }
 } // closing class header
