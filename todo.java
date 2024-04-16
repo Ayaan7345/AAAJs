@@ -8,7 +8,7 @@ import java.util.Scanner;
 //import javafx.scene.control.Menu;
 import java.io.PrintWriter;
 
-public class todo extends uinputmenu {
+public class todo {
 
   /*--------------------------------------------------------------------------------
   main method below: 
@@ -27,29 +27,20 @@ public class todo extends uinputmenu {
   public static void main(String args[]) throws java.io.IOException {
     // create any objects if needed (i.e. scanner for keyboard input)
     Scanner kbd = new Scanner(System.in);
-    java.io.File file = new File("ToDoList.txt");
-    /* Creating an object for OOP user.uinputmenu(prints out uinputmenu.java) */
-    uinputmenu usher = new uinputmenu();
+    java.io.File file = new File("ToDoList.txt");=
 
     // declare data storage space (constants and variables)
     int menuOption; // Main menu choice to move around the program
     boolean timeConflict; // is there a conflict iour schedule
     boolean isTaskTimeInPast; // Is the task in the future
-    String tempNewTaskName; // Temporary new name for task
-    int editMenuChoice; // choice in the edit menu
-    String tempNewCategory; // Temporary new name for category
     final double PROMODORO = (25.0 * 60); // Time in seconds to count for the promodoro effect
     final double BREAKTIME = (5.0 * 60); // The ammount of time the user has to take a break from a task
-    int taskToEdit;
     // Date rightNow = new Date(); //The date now
     String[][] taskList = new String[2][10]; // the main task list
     int numberOfTasks = 0;
-    int deleteMenuChoice; // choice in the delete menu
     // Task properties
     String taskName = ""; // name of the task
-    String task2Name = "";
     String taskCategory = ""; // What is the category of the task
-    String task2Category = "";
     boolean taskComplete; // Mark if time is completed
     LocalDateTime taskStart; // Set when the task will start
     LocalDateTime taskDuration; // set the duration of the task
@@ -197,7 +188,6 @@ public class todo extends uinputmenu {
       }
 
       else if (menuOption == 6) {
-        usher.menuUsher();
         System.out.println("------------Promodoro-------------");
         
         menuOption = promptMenuOption();
