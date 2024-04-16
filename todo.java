@@ -218,6 +218,11 @@ public class todo extends uinputmenu {
     } // close main menuOption==0 while Loop
   } // closing main method
 
+  /**
+  * Prompts the user to choose a menu option
+  *
+  * @return an int associated with the menu they want to enter
+  */
   public static int promptMenuOption() {
     Scanner kbd = new Scanner(System.in);
     System.out.print(
@@ -226,12 +231,28 @@ public class todo extends uinputmenu {
     return kbd.nextInt();
   }
 
+  
+  /**
+  * Displays a numbered list of each task, including name and category
+  *
+  * @param  taskList      A 2d String array; the 1st array contains names and the 2nd array contains categories
+  * @param  numberOfTasks The number of tasks in the array
+  */
   public static void displayTasks(String[][] taskList, int numberOfTasks) {
     for (int i = 0; i < numberOfTasks; i++) {
       System.out.println((i+1) + ". Task: " + taskList[0][i] + "; Category: " + taskList[1][i]);
     }
   }
 
+  /**
+  * Adds a task
+  * Prompts the user for the name and category
+  * If there is no room in the array, it will create a new copy of the array with 10 more entries
+  *
+  * @param  taskList      A 2d String array; the 1st array contains names and the 2nd array contains categories
+  * @param  numberOfTasks The number of tasks in the array
+  * @return               The updated array, or the new expanded copy of the array 
+  */
   public static String[][] addTask(String[][] taskList, int numberOfTasks) {
     Scanner kbd = new Scanner(System.in);
 
@@ -260,6 +281,16 @@ public class todo extends uinputmenu {
     return taskList;
   }
 
+  /**
+  * Edits a task
+  * Prompts the user to choose what property to edit
+  * Prompts the user to choose what task to edit
+  * Prompts the user for the new property
+  * Allows the user to make any number of edits
+  *
+  * @param  taskList      A 2d String array; the 1st array contains names and the 2nd array contains categories
+  * @param  numberOfTasks The number of tasks in the array
+  */
   public static void editTask(String[][] taskList, int numberOfTasks) {
     int editMenuChoice = 0;
     Scanner kbd = new Scanner(System.in);
@@ -326,6 +357,15 @@ public class todo extends uinputmenu {
     } while (editMenuChoice != 0);// editMenuChoice WHILE close
   }
 
+  /**
+  * Deletes a task
+  * Prompts the user to choose what task to delete
+  * Fills any holes in the array
+  *
+  * @param  taskList      A 2d String array; the 1st array contains names and the 2nd array contains categories
+  * @param  numberOfTasks The number of tasks in the array
+  * @return               True if a task was successfully deleted, false otherwise
+  */
   public static boolean deleteTask(String[][] taskList, int numberOfTasks) {
     Scanner kbd = new Scanner(System.in);
     boolean taskDeleted = false;
