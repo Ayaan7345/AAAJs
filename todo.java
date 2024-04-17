@@ -143,8 +143,7 @@ public class todo {
 
       else if (menuOption == 2) {
         System.out.println("----------Edit Task------------");
-
-        // IF 2 IS SELECTED, PRINT THE TASKS
+        
         // Prompt Edit Menu
         editTask(taskList, numberOfTasks);
 
@@ -169,18 +168,7 @@ public class todo {
       }
    
       else if (menuOption == 5) {
-        java.io.PrintWriter output = new java.io.PrintWriter(file);
-        // Suppose you have a 2D array of tasks and their categories called 'taskArray'
-        for (int j = 0; j < numberOfTasks; j++) {
-          output.println((j + 1) + ". Task: " + taskList[0][j] + " Category: " + taskList[1][j]);
-        }
-       
-
-        // Write each task and its category in the array to the file
-        //for (String[] task : taskArray) {
-        //  output.println("Task: " + task[0] + " Category: " + task[1]);
-        //}
-        output.close();
+        saveTasks(taskList, numberOfTasks, file);
 
         System.out.println("------------Tasks Saved to File------------");
 
@@ -378,5 +366,28 @@ public class todo {
     taskDeleted = true;
 
     return taskDeleted;
+  }
+
+  /**
+  * Saves a list of tasks to a file
+  *
+  * @param  taskList      A 2d String array; the 1st array contains names and the 2nd array contains categories
+  * @param  numberOfTasks The number of tasks in the array
+  * @param  taskFile      The file to write to
+  */
+  public static void saveTasks(String[][] taskList, int numberOfTasks, File taskFile) throws java.io.IOException {
+    java.io.PrintWriter output = new java.io.PrintWriter(taskFile);
+
+    // Suppose you have a 2D array of tasks and their categories called 'taskArray'
+    for (int i = 0; i < numberOfTasks; i++) {
+      output.println((i + 1) + ". Task: " + taskList[0][i] + " Category: " + taskList[1][i]);
+    }
+
+    // Write each task and its category in the array to the file
+    //for (String[] task : taskArray) {
+    //  output.println("Task: " + task[0] + " Category: " + task[1]);
+    //}
+    
+    output.close();
   }
 } // closing class header
