@@ -215,10 +215,16 @@ public class todo {
   */
   public static int promptMenuOption() {
     Scanner kbd = new Scanner(System.in);
+    int menuOption = -1;
+
     System.out.print(
-      "Main menu: \n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n6.Start Promodoro\n7.Print Tasks\n0.Exit");
-    System.out.print("\nEnter a choice from the menu and press Enter: ");
-    return kbd.nextInt();
+      "-----Main Menu:-----\n1.Add Task\n2.Edit Task\n3.Delete Task\n4.Complete Task\n5.Save\n6.Start Promodoro\n7.Print Tasks\n0.Exit");
+    System.out.print("\nEnter a choice from the menu and press enter: ");
+    
+    menuOption = kbd.nextInt();
+    kbd.nextLine();
+
+    return menuOption;
   }
 
   
@@ -251,11 +257,13 @@ public class todo {
     System.out.print("Select a task: ");
     taskIndex = kbd.nextInt();
 
-    while (0 < taskIndex && taskIndex <= numberOfTasks) {
-      System.out.print("\nNot a valid task option");
-      System.out.print("Select a task: ");
+    while (0 >= taskIndex || taskIndex > numberOfTasks) {
+      System.out.print("Not a valid task option");
+      System.out.print("\nSelect a task: ");
       taskIndex = kbd.nextInt();
     }
+
+    kbd.nextLine();
 
     return taskIndex - 1;
   }
@@ -319,8 +327,13 @@ public class todo {
       System.out.print(
           "\nWhat would you like to edit?\n1. Edit Task Name\n2. Edit Task Category\n0. Return to Main menu\nEnter a choice from the menu: ");
       editMenuChoice = kbd.nextInt();
+      kbd.nextLine();
 
       switch (editMenuChoice) {
+        case 0:
+          // Do nothing
+          break;
+
         case 1:
           // Prompt the task list
           taskToEdit = promptTask(taskList, numberOfTasks);
@@ -331,18 +344,13 @@ public class todo {
         case 2:
           // Prompt the task list
           taskToEdit = promptTask(taskList, numberOfTasks);
-          System.out.print("Enter the new task name: ");
-          taskList[1][taskToEdit - 1] = kbd.nextLine();
+          System.out.print("Enter the new task category: ");
+          taskList[1][taskToEdit] = kbd.nextLine();
           break;
         
         default:
           System.out.println("-----Invalid Option-----");
       }
-
-      System.out.print(
-        "\nWhat would you like to edit?\n1. Edit Task Name\n2. Edit Task Category\n0. Return to Main menu\nEnter a choice from the menu: ");
-      editMenuChoice = kbd.nextInt();
-
     } while (editMenuChoice != 0);// editMenuChoice WHILE close
   }
 
