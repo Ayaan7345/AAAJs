@@ -49,23 +49,8 @@ public class todo {
     // Ayaan is doing something dont touch
     // Start prompting to user
     if (file.exists()) {
-      // -----------------------------read data from the file, store it in
-      // memory--------------------------------
-      Scanner fileReader = new Scanner(file);
-      do {
-         numberOfTasks++;//There should be 1 task by default since the file already exists
-         fileReader.next();// Skip the number
-         fileReader.next();//Skip the *Task:* label
-         taskName = fileReader.next();//Store the task name
-         fileReader.next();// Skip the *Category:* Label
-         taskCategory = fileReader.next();//Store the task Category
-         // SPACES BETWEEN NAMES WILL COMPLETELY BREAK THE PROGRAM - NEED A DELIMITER
-         
-                 
-        taskList[0][i] = taskName;//Add Task Name to index i
-        taskList[1][i] = taskCategory; //Add Category to index i
-        i++;
-      } while (fileReader.hasNext()); //while the file still has lines
+      taskList = readTasks(file);
+      numberOfTasks = taskList[0].length - 10;
       
       System.out.print("Welcome to our To-Do Application, please select a choice from below to continue\n");
       
@@ -378,6 +363,8 @@ public class todo {
   public static void saveTasks(String[][] taskList, int numberOfTasks, File taskFile) throws java.io.IOException {
     java.io.PrintWriter output = new java.io.PrintWriter(taskFile);
 
+    output.println("# of tasks: " + numberOfTasks);
+
     // Suppose you have a 2D array of tasks and their categories called 'taskArray'
     for (int i = 0; i < numberOfTasks; i++) {
       output.println((i + 1) + ". Task: " + taskList[0][i] + " Category: " + taskList[1][i]);
@@ -389,5 +376,42 @@ public class todo {
     //}
     
     output.close();
+  }
+
+  /**
+  * Reads a list of tasks from a file
+  *
+  * @param  taskFile  The file to read the tasks from to
+  * @return           A 2d array containing the tasks from the file
+  */
+  public static String[][] readTasks(File taskFile) throws java.io.IOException {
+    //-----read data from the file, store it in memory-----
+    Scanner fileReader = new Scanner(taskFile);
+    int numberOfTasks = 0;
+    int index = 0;
+    String taskName = "";
+    String taskCategory = "";
+
+    fileReader.next();// Skip #
+    fileReader.next();// Skip of
+    fileReader.next();// Skip tasks:
+    numberOfTasks = Integer.parseInt(fileReader.next());
+
+    String[][] taskList = new String[2][numberOfTasks + 10];
+
+    do {
+      fileReader.next();// Skip the number
+      fileReader.next();//Skip the *Task:* label
+      taskName = fileReader.next();//Store the task name
+      fileReader.next();// Skip the *Category:* Label
+      taskCategory = fileReader.next();//Store the task Category
+      // SPACES BETWEEN NAMES WILL COMPLETELY BREAK THE PROGRAM - NEED A DELIMITER
+
+      taskList[0][index] = taskName;//Add Task Name to index i
+      taskList[1][index] = taskCategory; //Add Category to index i
+      index++;
+    } while (fileReader.hasNext()); //while the file still has lines
+
+    return taskList;
   }
 } // closing class header
