@@ -1,12 +1,8 @@
 
 //import API's needed here:
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Scanner;
-//import javafx.scene.control.Menu;
-import java.io.PrintWriter;
 
 public class todo {
 
@@ -28,9 +24,6 @@ public class todo {
     // create any objects if needed (i.e. scanner for keyboard input)
     Scanner kbd = new Scanner(System.in);
     java.io.File file = new File("ToDoList.txt");
-    /* Creating an object for OOP user.uinputmenu(prints out uinputmenu.java) */
-    uinputmenu usher = new uinputmenu();
-
     // declare data storage space (constants and variables)
     int menuOption; // Main menu choice to move around the program
     boolean timeConflict; // is there a conflict iour schedule
@@ -47,11 +40,9 @@ public class todo {
     LocalDateTime taskStart; // Set when the task will start
     LocalDateTime taskDuration; // set the duration of the task
     int i = 0; // for loops
-
-    // Ayaan is doing something dont touch
     // Start prompting to user
     if (file.exists()) {
-      taskList = readTasks(file);
+      taskList = readTasks(file); //listen i didnt touch this part of the code but its broken now 
       numberOfTasks = taskList[0].length - 10;
       
       System.out.print("Welcome to our To-Do Application, please select a choice from below to continue\n");
@@ -138,7 +129,7 @@ public class todo {
 
         // Prompt user for menuOption again since we are out of the editMenu
         menuOption = promptMenuOption();
-      } // close menuOption2 */
+      } // close menuOption2
 
       else if (menuOption == 3) {
         System.out.println("----------Delete Task------------");
@@ -149,13 +140,15 @@ public class todo {
 
         menuOption = promptMenuOption();
       }
+/*       Add a boolean array to track completion status
+      Mark tasks complete by setting array index to true
+      Update display to show [X (but i think that an 'X' would to vauge)] or [ ] before task
+      Persist completion status along with tasks */
 
-      else if (menuOption == 4) {
+      else if (menuOption == 4) { 
         System.out.println("----------Complete a Task----------");
-        
         menuOption = promptMenuOption();
       }
-   
       else if (menuOption == 5) {
         saveTasks(taskList, numberOfTasks, file);
 
@@ -163,13 +156,12 @@ public class todo {
 
         menuOption = promptMenuOption();
       }
-
       else if (menuOption == 6) {
-        System.out.println("------------Promodoro-------------");
-        
-        menuOption = promptMenuOption();
-      } 
-      
+        System.out.println("------------Pomodoro Timer-------------");
+        startPomodoroTimer(); // Call the method to start the Pomodoro timer
+        menuOption = promptMenuOption(); // Continue prompting for menu options after the timer finishes
+    }
+    
       else if (menuOption == 7) {
         System.out.println("-------------------------------------");
         System.out.println("Number of tasks: " + numberOfTasks);
@@ -405,9 +397,10 @@ public class todo {
 
     do {
       fileReader.next();// Skip the number
-      fileReader.next();//Skip the *Task:* label
+      //This was throwing compiling errors When i was tring to run the program 
+      //fileReader.next();//Skip the *Task:* label
       taskName = fileReader.next();//Store the task name
-      fileReader.next();// Skip the *Category:* Label
+      //fileReader.next();// Skip the *Category:* Label
       taskCategory = fileReader.next();//Store the task Category
       // SPACES BETWEEN NAMES WILL COMPLETELY BREAK THE PROGRAM - NEED A DELIMITER
 
@@ -418,4 +411,59 @@ public class todo {
 
     return taskList;
   }
+
+  public static void startPomodoroTimer() {
+    // Define constants for work and break durations
+    final int WORK_TIME_MINUTES = 25;
+    final int SHORT_BREAK_MINUTES = 5;
+    final int LONG_BREAK_MINUTES = 15;
+    final int CYCLES = 4; // Number of pomodoro cycles
+
+    // Iterate through each pomodoro cycle
+    for (int cycle = 1; cycle <= CYCLES; cycle++) {
+        // Display the cycle number and work duration
+        System.out.println("Cycle " + cycle + ": Work for " + WORK_TIME_MINUTES + " minutes.");
+
+        // Start work timer for WORK_TIME_MINUTES minutes
+        // This is where you would typically start a timer to track the work duration
+
+        // Simulate work time by sleeping for WORK_TIME_MINUTES * 60 seconds
+        // The sleep method will pause the program execution for the specified duration
+        sleep(WORK_TIME_MINUTES * 60);
+
+        // Check if it's not the last cycle
+        if (cycle < CYCLES) {
+            // Display message for short break
+            System.out.println("Take a short break for " + SHORT_BREAK_MINUTES + " minutes.");
+
+            // Start break timer for SHORT_BREAK_MINUTES minutes
+
+            // Simulate short break time by sleeping for SHORT_BREAK_MINUTES * 60 seconds
+            sleep(SHORT_BREAK_MINUTES * 60);
+        } else {
+            // Display message for long break
+            System.out.println("Take a long break for " + LONG_BREAK_MINUTES + " minutes.");
+
+            // Start break timer for LONG_BREAK_MINUTES minutes
+
+            // Simulate long break time by sleeping for LONG_BREAK_MINUTES * 60 seconds
+            sleep(LONG_BREAK_MINUTES * 60);
+        }
+    }
+
+    // Display completion message after all cycles are finished
+    System.out.println("Pomodoro session completed!");
+}//End of start promodoro 
+
+// Method to simulate sleep/wait functionality
+public static void sleep(int seconds) {
+    try {
+        // Convert seconds to milliseconds and pause execution
+        Thread.sleep(seconds * 1000);
+    } catch (InterruptedException e) {
+        // Handle interruption if the sleep is interrupted
+        Thread.currentThread().interrupt();
+    }
+}//End of sleep 
+
 } // closing class header
