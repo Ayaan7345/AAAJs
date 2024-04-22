@@ -150,7 +150,7 @@ public class todo {
         menuOption = promptMenuOption();
       }
       else if (menuOption == 5) {
-        saveTasks(taskList, numberOfTasks, file);
+        printTasks(taskList, numberOfTasks, file);
 
         System.out.println("------------Tasks Saved to File------------");
 
@@ -165,7 +165,7 @@ public class todo {
       else if (menuOption == 7) {
         System.out.println("-------------------------------------");
         System.out.println("Number of tasks: " + numberOfTasks);
-        displayTasks(taskList, numberOfTasks);
+        printTasks(taskList, numberOfTasks);
         
         menuOption = promptMenuOption();
       } else {
@@ -203,9 +203,9 @@ public class todo {
   * @param  taskList      A 2d String array; the 1st array contains names and the 2nd array contains categories
   * @param  numberOfTasks The number of tasks in the array
   */
-  public static void displayTasks(String[][] taskList, int numberOfTasks) {
+  public static void printTasks(String[][] taskList, int numberOfTasks) {
     for (int i = 0; i < numberOfTasks; i++) {
-      System.out.println((i+1) + ". Task: " + taskList[0][i] + "; Category: " + taskList[1][i]);
+      System.out.println((i+1) + ". Task: " + taskList[0][i] + " Category: " + taskList[1][i]);
     }
   }
 
@@ -221,7 +221,7 @@ public class todo {
     Scanner kbd = new Scanner(System.in);
     int taskIndex = -1;
 
-    displayTasks(taskList, numberOfTasks);
+    printTasks(taskList, numberOfTasks);
 
     System.out.print("Select a task: ");
     taskIndex = kbd.nextInt();
@@ -257,8 +257,6 @@ public class todo {
     System.out.print("Enter task category: ");
     taskCategory = kbd.nextLine();
 
-    System.out.println("------------\nAdded Task: " + taskName + "\nTask category: " + taskCategory + "\n------------");
-
     //Expand array if it's too small
     if (numberOfTasks > taskList.length) {
       String[][] tempArray = new String[2][taskList.length + 10];
@@ -272,6 +270,8 @@ public class todo {
     // append Task to list
     taskList[0][numberOfTasks] = taskName;
     taskList[1][numberOfTasks] = taskCategory;
+
+    System.out.println("------------\nAdded Task: " + taskName + "\nTask category: " + taskCategory + "\n------------");
 
     return taskList;
   }
@@ -356,7 +356,7 @@ public class todo {
   * @param  numberOfTasks The number of tasks in the array
   * @param  taskFile      The file to write to
   */
-  public static void saveTasks(String[][] taskList, int numberOfTasks, File taskFile) throws java.io.IOException {
+  public static void printTasks(String[][] taskList, int numberOfTasks, File taskFile) throws java.io.IOException {
     java.io.PrintWriter output = new java.io.PrintWriter(taskFile);
 
     output.println("# of tasks: " + numberOfTasks);
